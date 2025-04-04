@@ -1,0 +1,77 @@
+# Academic Website Template
+
+This repository contains a template for an academic website that can be hosted on GitHub Pages.
+
+## Getting Started
+
+### 1. Fork/Clone This Repository
+
+First, fork this repository to your own GitHub account or create a new repository named `yourusername.github.io` and copy these files into it.
+
+### 2. Customize Your Website
+
+#### Basic Information
+
+Edit the `index.html` file to update:
+
+- Your name, position, and institution
+- Contact information
+- Social media and academic profile links
+- About Me section
+- Research areas and projects
+- Publications
+- Teaching information
+- CV details
+- Contact information
+
+#### Profile Picture
+
+Replace the `profile-placeholder.jpg` file with your own profile picture. Make sure to keep the same filename or update the reference in the HTML file.
+
+#### CV Document
+
+Add your CV as a PDF file named `cv.pdf` or update the reference in the HTML file.
+
+### 3. Additional Customization
+
+#### Colors and Styling
+
+You can customize the colors, fonts, and other styles by editing the `styles.css` file.
+
+#### Add Additional Pages
+
+If you want to add additional pages to your website, create new HTML files and link to them from your main page.
+
+### 4. Deploy Your Website
+
+Your website will be automatically deployed when you push changes to your repository. It will be available at `https://yourusername.github.io`.
+
+## Features
+
+- Responsive design that works on mobile and desktop
+- Sections for all essential academic information
+- Easy to customize and extend
+- Clean, professional appearance
+
+## Advanced Customization
+
+### Adding Google Analytics
+
+To add Google Analytics tracking, insert the tracking code in the `<head>` section of your HTML file.
+
+### Custom Domain
+
+If you want to use a custom domain instead of `yourusername.github.io`, you can set it up in your repository settings:
+
+1. Go to your repository settings
+2. Scroll down to the "GitHub Pages" section
+3. Under "Custom domain," enter your domain name
+4. Add a CNAME record with your DNS provider
+
+## Maintenance
+
+Regularly update your website with new publications, projects, and other information to keep it current.
+
+## License
+
+This template is available under the MIT License. Feel free to use and modify it for your academic website.
