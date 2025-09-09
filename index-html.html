@@ -1,249 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Academic Website</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abolfazl (Arash) Sodagartojgi — Academic Website</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <meta name="description" content="PhD Candidate in Statistics at Rutgers University — Statistical Machine Learning, High-Dimensional Inference, Generative Models"/>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="profile">
-                <img src="profile-placeholder.jpg" alt="Your Profile Picture" class="profile-img">
-                <div class="profile-text">
-                    <h1>Your Name</h1>
-                    <p class="headline">Position at University/Institution</p>
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> email@example.edu</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Department, University</p>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="ORCID"><i class="fab fa-orcid"></i></a>
-                    </div>
-                </div>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="profile">
+        <!-- Put your actual photo at /images/profile.jpg -->
+        <img src="images/profile.jpg" alt="Abolfazl (Arash) Sodagartojgi" class="profile-img"/>
+        <div class="profile-text">
+          <h1>Abolfazl (Arash) Sodagartojgi</h1>
+          <p class="headline">PhD Candidate in Statistics · Rutgers University</p>
+          <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> <a href="mailto:sodagaax@gmail.com">sodagaax@gmail.com</a></p>
+            <p><i class="fas fa-map-marker-alt"></i> Highland Park, NJ</p>
+          </div>
+          <div class="social-links">
+            <a href="https://scholar.google.com/citations?user=l0vfBEwAAAAJ" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+            <a href="https://github.com/sodagar1374" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/abolfazl-arash-sodagartojgi-728050156/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <!-- Add ORCID if you have one
+            <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX" title="ORCID"><i class="fab fa-orcid"></i></a>
+            -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#wip">Work in Progress</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+    <div class="container">
+
+      <!-- ABOUT -->
+      <section id="about">
+        <h2>About Me</h2>
+        <p>
+          I am a <strong>PhD Candidate in Statistics at Rutgers University</strong>, specializing in
+          <strong>statistical machine learning, high-dimensional inference, and deep generative models</strong>.
+          I have 3+ years of quantitative finance experience at Rabobank (New York), building forecasting and risk tools for
+          derivatives portfolios.
+        </p>
+        <p>
+          My current interests include dynamic factor models and sparse state-space inference; VAEs, flows, and diffusion models;
+          causal inference in finance and healthcare; and machine-learning–based stochastic weather generators for renewable energy.
+        </p>
+      </section>
+
+      <!-- RESEARCH -->
+      <section id="research">
+        <h2>Research</h2>
+        <div class="research-areas">
+          <div class="research-area">
+            <h3>Dynamic Factor Models & Sparse State-Space Inference</h3>
+            <p>Identifiable, high-dimensional DFMs with episodic factor activation and efficient MAP-EM/Kalman filtering.</p>
+          </div>
+          <div class="research-area">
+            <h3>Deep Generative Models</h3>
+            <p>VAEs, normalizing flows, and diffusion models for complex temporal structure and stochastic volatility.</p>
+          </div>
+          <div class="research-area">
+            <h3>Causal ML in Finance & Health</h3>
+            <p>Combining causal inference with deep learning for order book dynamics and clinical EEG analyses.</p>
+          </div>
+          <div class="research-area">
+            <h3>Stochastic Weather Generators</h3>
+            <p>Minute-level wind vector generation trained on multi-decade atmospheric datasets for grid planning.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PUBLICATIONS -->
+      <section id="publications">
+        <h2>Publications (Selected)</h2>
+
+        <ul class="publication-list">
+          <li>
+            <p class="publication-authors">Raeisi Z, <strong>Sodagartojgi A</strong>, Sharafkhani F, Roshanzamir A, Najafzadeh H, Bashiri O, Golkarieh A. (2025).</p>
+            <p class="publication-title"><em>Enhanced classification of tinnitus patients using EEG microstates and deep learning techniques.</em></p>
+            <p class="publication-journal"><em>Scientific Reports</em>, 15:15959.</p>
+            <p class="publication-links">
+              <a href="https://doi.org/10.1038/s41598-025-01129-5">DOI</a>
+            </p>
+          </li>
+
+          <li>
+            <p class="publication-authors">Lashaki RA, Raeisi Z, <strong>Sodagartojgi A</strong>, Abedi Lomer F, Aghdaei E, Najafzadeh H. (2025).</p>
+            <p class="publication-title"><em>EEG microstate analysis in trigeminal neuralgia: identifying potential biomarkers for enhanced diagnostic accuracy.</em></p>
+            <p class="publication-journal"><em>Acta Neurologica Belgica</em>, Online First: 1–21.</p>
+            <p class="publication-links">
+              <a href="https://doi.org/10.1007/s13760-025-02812-0">DOI</a>
+            </p>
+          </li>
+
+          <li>
+            <p class="publication-authors">Abdollahi SA, Pourabadeh A, Alishiri M, <strong>Sodagartojgi A</strong>, Ranjbar SF, Ehghaghi MB, Talati F. (2024).</p>
+            <p class="publication-title"><em>Modeling and optimization of efficient removal of diclofenac and naproxen based on chemometric approaches.</em></p>
+            <p class="publication-journal"><em>Water Resources and Industry</em>, 31:100238.</p>
+            <p class="publication-links">
+              <a href="https://doi.org/10.1016/j.wri.2023.100238">DOI</a>
+            </p>
+          </li>
+
+          <li>
+            <p class="publication-authors">Talebzadeh M, <strong>Sodagartojgi A</strong>, Moslemi Z, Sedighi S, Kazemi B, Akbari F. (2024).</p>
+            <p class="publication-title"><em>Deep learning-based retinal abnormality detection from OCT images with limited data.</em></p>
+            <p class="publication-journal"><em>World Journal of Advanced Research and Reviews</em>, 21(3):690–698.</p>
+            <p class="publication-links">
+              <a href="https://doi.org/10.30574/wjarr.2024.21.3.0716">DOI</a>
+            </p>
+          </li>
+
+          <li>
+            <p class="publication-authors">Dokhanian S, <strong>Sodagartojgi A</strong>, Tehranian K, Ahmadirad Z, Khorashadi Moghaddam P, Mohsenibeigzadeh M. (2024).</p>
+            <p class="publication-title"><em>Exploring the impact of supply chain integration and agility on commodity supply chain performance.</em></p>
+            <p class="publication-journal"><em>World Journal of Advanced Research and Reviews</em>, 22(1):441–450.</p>
+            <p class="publication-links">
+              <a href="https://doi.org/10.30574/wjarr.2024.22.1.1119">DOI</a>
+            </p>
+          </li>
+
+          <li>
+            <p class="publication-authors">Tashakkori A, Erfanibehrouz N, Mirshekari S, <strong>Sodagartojgi A</strong>, Gupta V. (2024).</p>
+            <p class="publication-title"><em>Enhancing stock market prediction accuracy with recurrent deep learning models: A case study on the CAC40 index.</em></p>
+            <p class="publication-journal"><em>World Journal of Advanced Research and Reviews</em>, 23(1):2309–2321.</p>
+            <p class="publication-links">
+              <a href="https://doi.org/10.30574/wjarr.2024.23.1.2156">DOI</a>
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- WORK IN PROGRESS -->
+      <section id="wip">
+        <h2>Work in Progress</h2>
+        <ul class="projects-list">
+          <li>
+            <h4>Dynamic Vector Factor Model with Sparse Factor Transitions</h4>
+            <p>Novel Linear-Gaussian DFM with time-varying spike-and-slab innovations; MAP-EM with Kalman filter/RTS smoother. Episodic factor activation improves identifiability and forecasts.</p>
+          </li>
+          <li>
+            <h4>ML Stochastic Weather Generator (with Michael Stein)</h4>
+            <p>Minute-scale wind vector generator trained on ~30 years of ARM Lamont data using VAEs and flows; complements physics-based models for renewable grid planning.</p>
+          </li>
+          <li>
+            <h4>Causal Inference in High-Frequency Markets (with Regina Liu)</h4>
+            <p>Transformer-based approach for causal discovery in microsecond order-book dynamics; addresses confounding while remaining computationally efficient.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- TEACHING -->
+      <section id="teaching">
+        <h2>Teaching</h2>
+        <ul class="courses-list">
+          <li><h4>Teaching Assistant, Rutgers (2022–Present)</h4>
+            <p>Statistical Inference · Linear Regression · Time Series Analysis · Machine Learning.</p>
+            <p><strong>Best Teaching Assistant Award (2024)</strong>.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- AWARDS -->
+      <section id="awards">
+        <h2>Honors & Awards</h2>
+        <ul class="cv-list">
+          <li>Full 5-Year PhD Fellowship, Rutgers University (2022–2027)</li>
+          <li>Best Teaching Assistant Award, Rutgers Statistics (2024)</li>
+          <li>Best Qualifying Exam Performance, Rutgers Statistics (2023)</li>
+          <li>JSM Travel Grant, American Statistical Association (2024)</li>
+          <li>AI for Statistics Workshop Travel Award, NSF (2024)</li>
+          <li>Graduate Student Research Award, Rutgers Statistics (2023)</li>
+          <li>College of Business Valedictorian, JMU (2019) — Summa Cum Laude, Phi Beta Kappa</li>
+        </ul>
+      </section>
+
+      <!-- CV -->
+      <section id="cv">
+        <h2>Curriculum Vitae</h2>
+        <p>Download my full CV as a <a href="files/cv.pdf">PDF</a>.</p>
+
+        <h3>Education</h3>
+        <ul class="cv-list">
+          <li>
+            <div class="cv-item">
+              <p class="cv-date">2022 — Present</p>
+              <div class="cv-content">
+                <p class="cv-title">PhD in Statistics</p>
+                <p class="cv-location">Rutgers University, New Brunswick, NJ</p>
+                <p class="cv-description">GPA: 3.9/4.0 · Advisors: Prof. Gemma Moran & Prof. Han Xiao</p>
+              </div>
             </div>
+          </li>
+          <li>
+            <div class="cv-item">
+              <p class="cv-date">2022 — 2024</p>
+              <div class="cv-content">
+                <p class="cv-title">MS in Statistics</p>
+                <p class="cv-location">Rutgers University, New Brunswick, NJ</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="cv-item">
+              <p class="cv-date">2016 — 2019</p>
+              <div class="cv-content">
+                <p class="cv-title">BS in Mathematics & Economics (Double Major)</p>
+                <p class="cv-location">James Madison University, Harrisonburg, VA</p>
+                <p class="cv-description">Valedictorian · GPA 3.95/4.0 · Summa Cum Laude · Phi Beta Kappa</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <h3>Professional Experience</h3>
+        <ul class="cv-list">
+          <li>
+            <div class="cv-item">
+              <p class="cv-date">2020 — 2022</p>
+              <div class="cv-content">
+                <p class="cv-title">Commodity Derivatives Trading Analyst</p>
+                <p class="cv-location">Rabobank, New York, NY</p>
+                <p class="cv-description">Managed energy & agriculture derivatives portfolios; built ML models for price & volatility; built Python tools for real-time P&amp;L and risk; structured exotic options and hedging solutions.</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="cv-item">
+              <p class="cv-date">2019 — 2021</p>
+              <div class="cv-content">
+                <p class="cv-title">Corporate Derivatives Quantitative Analyst</p>
+                <p class="cv-location">Rabobank, New York, NY</p>
+                <p class="cv-description">Valuation for interest-rate and cross-currency swaps; stress testing FX hedges during COVID-19; automated MTM reports with Python & SQL; supported client risk communications.</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-details">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <p><a href="mailto:sodagaax@gmail.com">sodagaax@gmail.com</a></p>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>Highland Park, NJ</p>
+          </div>
         </div>
-    </header>
+      </section>
+    </div>
+  </main>
 
-    <nav>
-        <div class="container">
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#teaching">Teaching</a></li>
-                <li><a href="#cv">CV</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="year"></span> Abolfazl (Arash) Sodagartojgi. All rights reserved.</p>
+    </div>
+  </footer>
 
-    <main>
-        <div class="container">
-            <section id="about">
-                <h2>About Me</h2>
-                <p>Welcome to my academic website. I am a [your position] at [your institution] specializing in [your field]. My research focuses on [brief description of research interests].</p>
-                
-                <p>Prior to joining [current institution], I [brief background information - education, previous positions, etc.].</p>
-                
-                <p>Feel free to explore my website to learn more about my research, publications, and teaching.</p>
-            </section>
-
-            <section id="research">
-                <h2>Research</h2>
-                <p>My research interests include:</p>
-                
-                <div class="research-areas">
-                    <div class="research-area">
-                        <h3>Research Area 1</h3>
-                        <p>Description of your first research area. This could include methodologies, key findings, and importance to the field.</p>
-                    </div>
-                    
-                    <div class="research-area">
-                        <h3>Research Area 2</h3>
-                        <p>Description of your second research area. This could include methodologies, key findings, and importance to the field.</p>
-                    </div>
-                    
-                    <div class="research-area">
-                        <h3>Research Area 3</h3>
-                        <p>Description of your third research area. This could include methodologies, key findings, and importance to the field.</p>
-                    </div>
-                </div>
-                
-                <h3>Current Projects</h3>
-                <ul class="projects-list">
-                    <li>
-                        <h4>Project Title 1</h4>
-                        <p>Brief description of the project, including goals, methods, and any collaborators.</p>
-                    </li>
-                    <li>
-                        <h4>Project Title 2</h4>
-                        <p>Brief description of the project, including goals, methods, and any collaborators.</p>
-                    </li>
-                </ul>
-            </section>
-
-            <section id="publications">
-                <h2>Publications</h2>
-                
-                <h3>Journal Articles</h3>
-                <ul class="publication-list">
-                    <li>
-                        <p class="publication-authors">Author 1, Author 2, & <strong>Your Name</strong>. (2023).</p>
-                        <p class="publication-title">Title of the article.</p>
-                        <p class="publication-journal"><em>Journal Name</em>, Volume(Issue), pages.</p>
-                        <p class="publication-links">
-                            <a href="#" class="publication-link">PDF</a>
-                            <a href="#" class="publication-link">DOI</a>
-                            <a href="#" class="publication-link">Code</a>
-                        </p>
-                    </li>
-                    <li>
-                        <p class="publication-authors">Author 1, <strong>Your Name</strong>, & Author 3. (2022).</p>
-                        <p class="publication-title">Title of another article.</p>
-                        <p class="publication-journal"><em>Journal Name</em>, Volume(Issue), pages.</p>
-                        <p class="publication-links">
-                            <a href="#" class="publication-link">PDF</a>
-                            <a href="#" class="publication-link">DOI</a>
-                        </p>
-                    </li>
-                </ul>
-                
-                <h3>Conference Papers</h3>
-                <ul class="publication-list">
-                    <li>
-                        <p class="publication-authors"><strong>Your Name</strong> & Author 2. (2023).</p>
-                        <p class="publication-title">Title of the conference paper.</p>
-                        <p class="publication-journal"><em>Conference Name</em>, Location.</p>
-                        <p class="publication-links">
-                            <a href="#" class="publication-link">PDF</a>
-                            <a href="#" class="publication-link">Slides</a>
-                        </p>
-                    </li>
-                </ul>
-            </section>
-
-            <section id="teaching">
-                <h2>Teaching</h2>
-                
-                <h3>Current Courses</h3>
-                <ul class="courses-list">
-                    <li>
-                        <h4>Course Title 1</h4>
-                        <p>Brief description of the course, including level, term, and key topics covered.</p>
-                    </li>
-                    <li>
-                        <h4>Course Title 2</h4>
-                        <p>Brief description of the course, including level, term, and key topics covered.</p>
-                    </li>
-                </ul>
-                
-                <h3>Past Courses</h3>
-                <ul class="courses-list">
-                    <li>
-                        <h4>Course Title 3</h4>
-                        <p>Brief description of the course, including when it was taught.</p>
-                    </li>
-                    <li>
-                        <h4>Course Title 4</h4>
-                        <p>Brief description of the course, including when it was taught.</p>
-                    </li>
-                </ul>
-            </section>
-
-            <section id="cv">
-                <h2>Curriculum Vitae</h2>
-                <p>My full CV is available as a <a href="cv.pdf">PDF document</a>.</p>
-                
-                <h3>Education</h3>
-                <ul class="cv-list">
-                    <li>
-                        <div class="cv-item">
-                            <p class="cv-date">20XX - 20XX</p>
-                            <div class="cv-content">
-                                <p class="cv-title">Ph.D. in [Your Field]</p>
-                                <p class="cv-location">University Name, Location</p>
-                                <p class="cv-description">Thesis: "Title of Your Thesis"</p>
-                                <p class="cv-description">Advisor: Professor Name</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="cv-item">
-                            <p class="cv-date">20XX - 20XX</p>
-                            <div class="cv-content">
-                                <p class="cv-title">M.S. in [Your Field]</p>
-                                <p class="cv-location">University Name, Location</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="cv-item">
-                            <p class="cv-date">20XX - 20XX</p>
-                            <div class="cv-content">
-                                <p class="cv-title">B.S. in [Your Field]</p>
-                                <p class="cv-location">University Name, Location</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                
-                <h3>Professional Experience</h3>
-                <ul class="cv-list">
-                    <li>
-                        <div class="cv-item">
-                            <p class="cv-date">20XX - Present</p>
-                            <div class="cv-content">
-                                <p class="cv-title">Current Position</p>
-                                <p class="cv-location">Institution, Location</p>
-                                <p class="cv-description">Brief description of responsibilities and achievements.</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="cv-item">
-                            <p class="cv-date">20XX - 20XX</p>
-                            <div class="cv-content">
-                                <p class="cv-title">Previous Position</p>
-                                <p class="cv-location">Institution, Location</p>
-                                <p class="cv-description">Brief description of responsibilities and achievements.</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section id="contact">
-                <h2>Contact</h2>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>email@example.edu</p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <p>+1 (123) 456-7890</p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p>Office Number, Building Name<br>Department Name<br>University Name<br>City, State, ZIP</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Your Name. All rights reserved.</p>
-            <p>Last updated: April 2025</p>
-        </div>
-    </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
