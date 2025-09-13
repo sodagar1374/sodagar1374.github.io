@@ -15,9 +15,11 @@ title_separator: "-"
 name: "Abolfazl (Arash) Sodagartojgi"
 description: "PhD Candidate in Statistics at Rutgers University — Statistical Machine Learning, High-Dimensional Inference, Generative Models"
 # Your GitHub Pages URL (project site)
-url: "https://sodagar1374.github.io"
-baseurl: "/ArashSodagartojgi.github.io"
+# Your GitHub Pages URL (user site)
+url: "https://ArashSodagartojgi.github.io"
+baseurl: ""   # must be empty for a user-site style URL
 repository: "sodagar1374/ArashSodagartojgi.github.io"
+
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
