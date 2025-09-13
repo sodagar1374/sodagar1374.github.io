@@ -17,9 +17,9 @@ description: "PhD Candidate in Statistics at Rutgers University — Statistical 
 # Your GitHub Pages URL (project site)
 # Your GitHub Pages URL (user site)
 url: "https://sodagar1374.github.io"
-baseurl: ""
+baseurl: ""        # must stay empty for a user site
+repository: "sodagar1374/sodagar1374.github.io"
 
-repository: "sodagar1374/ArashSodagartojgi.github.io"
 
 
 # Site Author - The following control what appear as part of the author content on the side bar.
