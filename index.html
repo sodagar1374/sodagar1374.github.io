@@ -28,7 +28,7 @@
     /* Header */
     header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(6px);border-bottom:1px solid #eee}
     .topbar{display:flex;align-items:center;gap:20px;max-width:var(--maxw);margin:0 auto;padding:14px 18px}
-    .pfp{width:72px;height:72px;border-radius:18px;object-fit:cover;border:1px solid #e5e7eb}
+    .pfp{width:clamp(110px, 14vw, 180px);height:clamp(110px, 14vw, 180px);border-radius:24px;object-fit:cover;border:1px solid #e5e7eb}
     .identity{flex:1 1 auto}
     .name{margin:0;font-weight:800;font-size:1.25rem}
     .tag{margin:2px 0 0;color:var(--muted);font-size:.95rem}
@@ -60,6 +60,10 @@
     /* Small screens */
     @media (max-width:520px){
       .topbar{gap:12px}
+      .pfp{width:clamp(84px, 22vw, 128px);height:clamp(84px, 22vw, 128px);border-radius:18px}
+      .name{font-size:1.15rem}
+      nav ul{gap:8px}
+    }
       .pfp{width:56px;height:56px;border-radius:12px}
       .name{font-size:1.1rem}
       nav ul{gap:8px}
@@ -69,7 +73,7 @@
 <body>
   <header>
     <div class="topbar">
-      <img class="pfp" src="images/profile.jpg" alt="Abolfazl (Arash) Sodagartojgi profile photo" width="144" height="144" />
+      <img class="pfp" src="images/profile.jpg" alt="Abolfazl (Arash) Sodagartojgi profile photo" width="300" height="300" />
       <div class="identity">
         <h1 class="name">Abolfazl (Arash) Sodagartojgi</h1>
         <p class="tag">PhD Candidate in Statistics · Rutgers University · <a href="mailto:sodagaax@gmail.com">sodagaax@gmail.com</a></p>
