@@ -3,79 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Abolfazl (Arash) Sodagartojgi — Academic Profile</title>
-  <meta name="description" content="PhD Candidate in Statistics at Rutgers University — Statistical ML, High-Dimensional Inference, Generative Models" />
-  <!-- Open Graph / Twitter (for nice link previews) -->
+  <meta name="description" content="PhD Candidate in Statistics at Rutgers University — Statistical ML, High-Dimensional Inference, Generative Models." />
+  <link rel="canonical" href="https://sodagar1374.github.io/" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css?v=2" />
+
+  <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Abolfazl (Arash) Sodagartojgi — Academic Profile" />
-  <meta property="og:description" content="PhD Candidate in Statistics at Rutgers University — Statistical ML, High-Dimensional Inference, Generative Models" />
+  <meta property="og:description" content="PhD Candidate in Statistics at Rutgers University — Statistical ML, High-Dimensional Inference, Generative Models." />
   <meta property="og:image" content="https://sodagar1374.github.io/images/profile.jpg" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <style>
-    :root{
-      --accent:#cc0033; /* Rutgers Red */
-      --text:#1b1b1b;
-      --muted:#6b7280;
-      --bg:#ffffff;
-      --card:#fafafa;
-      --maxw: 900px;
-    }
-    html{scroll-behavior:smooth}
-    *{box-sizing:border-box}
-    body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;color:var(--text);background:var(--bg)}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    /* Header */
-    header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(6px);border-bottom:1px solid #eee}
-    .topbar{display:flex;align-items:center;gap:20px;max-width:var(--maxw);margin:0 auto;padding:14px 18px}
-    .pfp{width:clamp(110px, 14vw, 180px);height:clamp(110px, 14vw, 180px);border-radius:24px;object-fit:cover;border:1px solid #e5e7eb}
-    .identity{flex:1 1 auto}
-    .name{margin:0;font-weight:800;font-size:1.25rem}
-    .tag{margin:2px 0 0;color:var(--muted);font-size:.95rem}
-    nav ul{display:flex;flex-wrap:wrap;gap:12px;list-style:none;margin:0;padding:0}
-    nav a{display:inline-block;padding:6px 10px;border-radius:10px}
-    nav a:hover{background:#f3f4f6}
-    /* Main */
-    main{max-width:var(--maxw);margin:24px auto;padding:0 18px}
-    section{padding:28px 0;border-bottom:1px dashed #eee}
-    section:last-of-type{border-bottom:none}
-    h2{margin:0 0 10px;font-size:1.3rem}
-    h3{margin:16px 0 6px;font-size:1.05rem}
-    .muted{color:var(--muted)}
-    .grid{
-      display:grid;gap:18px;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    }
-    .card{background:var(--card);border:1px solid #eee;border-radius:14px;padding:16px}
-    /* Publications */
-    .pubs{list-style:none;margin:0;padding:0}
-    .pub{padding:12px 0}
-    .pub + .pub{border-top:1px solid #eee}
-    .pub-title{font-weight:600}
-    .pub-venue{font-style:italic}
-    .pub-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
-    .pill{display:inline-block;border:1px solid #e5e7eb;border-radius:999px;padding:3px 10px;font-size:.85rem}
-    /* Footer */
-    footer{max-width:var(--maxw);margin:20px auto 60px;padding:0 18px;color:var(--muted)}
-    /* Small screens */
-    @media (max-width:520px){
-      .topbar{gap:12px}
-      .pfp{width:clamp(84px, 22vw, 128px);height:clamp(84px, 22vw, 128px);border-radius:18px}
-      .name{font-size:1.15rem}
-      nav ul{gap:8px}
-    }
-     
-  </style>
+  <meta name="theme-color" content="#2c3e50" />
 </head>
 <body>
+  <a href="#main" class="sr-only">Skip to main content</a>
+
+  <!-- Header -->
   <header>
-    <div class="topbar">
-      <img class="pfp" src="images/profile.jpg" alt="Abolfazl (Arash) Sodagartojgi profile photo" width="300" height="300" />
-      <div class="identity">
-        <h1 class="name">Abolfazl (Arash) Sodagartojgi</h1>
-        <p class="tag">PhD Candidate in Statistics · Rutgers University · <a href="mailto:sodagaax@gmail.com">sodagaax@gmail.com</a></p>
+    <div class="container">
+      <div class="profile">
+        <img class="profile-img" src="images/profile.jpg" alt="Portrait of Abolfazl (Arash) Sodagartojgi" loading="eager" decoding="sync" />
+        <div class="profile-text">
+          <h1>Abolfazl (Arash) Sodagartojgi</h1>
+          <p class="headline">PhD Candidate in Statistics · Rutgers University</p>
+
+          <div class="contact-info">
+            <p><a href="mailto:sodagaax@gmail.com">sodagaax@gmail.com</a></p>
+            <p>Highland Park, NJ</p>
+            <p><a href="https://github.com/sodagar1374" target="_blank" rel="noopener">GitHub</a></p>
+            <p><a href="https://sodagar1374.github.io/" target="_blank" rel="noopener">Website</a></p>
+          </div>
+
+          <div class="social-links" aria-label="Social links">
+            <!-- add icons if you like; keeping text-only for now -->
+          </div>
+        </div>
       </div>
-      <nav aria-label="Primary">
+    </div>
+
+    <nav aria-label="Primary">
+      <div class="container">
         <ul>
           <li><a href="#about">About</a></li>
           <li><a href="#research">Research</a></li>
@@ -85,11 +56,12 @@
           <li><a href="#cv">CV</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-      </nav>
-    </div>
+      </div>
+    </nav>
   </header>
 
-  <main>
+  <!-- Main -->
+  <main id="main" class="container">
     <!-- About -->
     <section id="about">
       <h2>About</h2>
@@ -97,61 +69,79 @@
       <p>My current interests include dynamic factor models and sparse state-space inference; VAEs, flows, and diffusion models; causal inference in finance and healthcare; and machine-learning–based stochastic weather generators for renewable energy.</p>
     </section>
 
-    <!-- Research highlights as small cards (quick-scan like the reference site) -->
+    <!-- Research -->
     <section id="research">
       <h2>Research</h2>
-      <div class="grid">
-        <div class="card">
+      <div class="research-areas">
+        <article class="research-area">
           <h3>Dynamic Factor Models</h3>
           <p>Identifiable DFMs with episodic factor activation and efficient MAP-EM/Kalman filtering.</p>
-          <span class="pill">Time Series</span> <span class="pill">Kalman</span> <span class="pill">Spike-&-Slab</span>
-        </div>
-        <div class="card">
+          <p><span class="publication-link">Time Series</span> <span class="publication-link">Kalman</span> <span class="publication-link">Spike-&-Slab</span></p>
+        </article>
+
+        <article class="research-area">
           <h3>Deep Generative Models</h3>
           <p>VAEs, normalizing flows, and diffusion for complex temporal structure and stochastic volatility.</p>
-          <span class="pill">VAE</span> <span class="pill">Diffusion</span>
-        </div>
-        <div class="card">
+          <p><span class="publication-link">VAE</span> <span class="publication-link">Diffusion</span></p>
+        </article>
+
+        <article class="research-area">
           <h3>Causal ML</h3>
           <p>Combining causal inference with deep learning for order book dynamics and clinical EEG.</p>
-          <span class="pill">Causal Inference</span> <span class="pill">Finance</span>
-        </div>
-        <div class="card">
+          <p><span class="publication-link">Causal Inference</span> <span class="publication-link">Finance</span></p>
+        </article>
+
+        <article class="research-area">
           <h3>Stochastic Weather Generators</h3>
           <p>Minute-level wind vector generation trained on multi-decade atmospheric datasets.</p>
-          <span class="pill">Renewables</span> <span class="pill">Wind</span>
-        </div>
+          <p><span class="publication-link">Renewables</span> <span class="publication-link">Wind</span></p>
+        </article>
       </div>
     </section>
 
     <!-- Publications -->
     <section id="pubs">
       <h2>Publications (Selected)</h2>
-      <ul class="pubs">
-        <li class="pub">
-          <div class="pub-title">Enhanced classification of tinnitus patients using EEG microstates and deep learning techniques.</div>
-          <div>Raeisi Z, <strong>Sodagartojgi A</strong>, Sharafkhani F, Roshanzamir A, Najafzadeh H, Bashiri O, Golkarieh A. <span class="pub-venue">Scientific Reports</span> (2025).</div>
-          <div class="pub-links"><a class="pill" href="https://doi.org/10.1038/s41598-025-70036-3" target="_blank" rel="noopener">DOI</a></div>
+      <ul class="publication-list">
+        <li>
+          <div class="publication-title">Enhanced classification of tinnitus patients using EEG microstates and deep learning techniques.</div>
+          <div class="publication-authors">Raeisi Z, <strong>Sodagartojgi A</strong>, Sharafkhani F, Roshanzamir A, Najafzadeh H, Bashiri O, Golkarieh A.</div>
+          <div class="publication-journal"><em>Scientific Reports</em> (2025)</div>
+          <div class="publication-links">
+            <a class="publication-link" href="https://doi.org/10.1038/s41598-025-70036-3" target="_blank" rel="noopener">DOI</a>
+          </div>
         </li>
-        <li class="pub">
-          <div class="pub-title">EEG microstate analysis in trigeminal neuralgia: identifying potential biomarkers for enhanced diagnostic accuracy.</div>
-          <div>Lashaki RA, Raeisi Z, <strong>Sodagartojgi A</strong>, Abedi Lomer F, Aghdaei E, Najafzadeh H. <span class="pub-venue">Acta Neurologica Belgica</span> (2025).</div>
-          <div class="pub-links"><a class="pill" href="https://doi.org/10.1007/s13760-024-02631-0" target="_blank" rel="noopener">DOI</a></div>
+        <li>
+          <div class="publication-title">EEG microstate analysis in trigeminal neuralgia: identifying potential biomarkers for enhanced diagnostic accuracy.</div>
+          <div class="publication-authors">Lashaki RA, Raeisi Z, <strong>Sodagartojgi A</strong>, Abedi Lomer F, Aghdaei E, Najafzadeh H.</div>
+          <div class="publication-journal"><em>Acta Neurologica Belgica</em> (2025)</div>
+          <div class="publication-links">
+            <a class="publication-link" href="https://doi.org/10.1007/s13760-024-02631-0" target="_blank" rel="noopener">DOI</a>
+          </div>
         </li>
-        <li class="pub">
-          <div class="pub-title">Modeling and optimization of efficient removal of diclofenac and naproxen based on chemometric approaches.</div>
-          <div>Abdollahi SA, Pourabadeh A, Alishiri M, <strong>Sodagartojgi A</strong>, Ranjbar SF, Ehghaghi MB, Talati F. <span class="pub-venue">Water Resources and Industry</span> 31 (2024).</div>
-          <div class="pub-links"><a class="pill" href="https://doi.org/10.1016/j.wri.2024.100238" target="_blank" rel="noopener">DOI</a></div>
+        <li>
+          <div class="publication-title">Modeling and optimization of efficient removal of diclofenac and naproxen based on chemometric approaches.</div>
+          <div class="publication-authors">Abdollahi SA, Pourabadeh A, Alishiri M, <strong>Sodagartojgi A</strong>, Ranjbar SF, Ehghaghi MB, Talati F.</div>
+          <div class="publication-journal"><em>Water Resources and Industry</em> 31 (2024)</div>
+          <div class="publication-links">
+            <a class="publication-link" href="https://doi.org/10.1016/j.wri.2024.100238" target="_blank" rel="noopener">DOI</a>
+          </div>
         </li>
-        <li class="pub">
-          <div class="pub-title">Deep learning-based retinal abnormality detection from OCT images with limited data.</div>
-          <div>Talebzadeh M, <strong>Sodagartojgi A</strong>, Moslemi Z, Sedighi S, Kazemi B, Akbari F. <span class="pub-venue">World Journal of Advanced Research and Reviews</span> 21(3) (2024).</div>
-          <div class="pub-links"><a class="pill" href="https://doi.org/10.30574/wjarr.2024.21.3.2187" target="_blank" rel="noopener">DOI</a></div>
+        <li>
+          <div class="publication-title">Deep learning-based retinal abnormality detection from OCT images with limited data.</div>
+          <div class="publication-authors">Talebzadeh M, <strong>Sodagartojgi A</strong>, Moslemi Z, Sedighi S, Kazemi B, Akbari F.</div>
+          <div class="publication-journal"><em>World Journal of Advanced Research and Reviews</em> 21(3) (2024)</div>
+          <div class="publication-links">
+            <a class="publication-link" href="https://doi.org/10.30574/wjarr.2024.21.3.2187" target="_blank" rel="noopener">DOI</a>
+          </div>
         </li>
-        <li class="pub">
-          <div class="pub-title">Exploring the impact of supply chain integration and agility on commodity supply chain performance.</div>
-          <div>Dokhanian S, <strong>Sodagartojgi A</strong>, Tehranian K, Ahmadirad Z, Khorashadi Moghaddam P, Mohsenibeigzadeh M. <span class="pub-venue">WJARR</span> 22(1) (2024).</div>
-          <div class="pub-links"><a class="pill" href="https://doi.org/10.30574/wjarr.2024.22.1.2994" target="_blank" rel="noopener">DOI</a></div>
+        <li>
+          <div class="publication-title">Exploring the impact of supply chain integration and agility on commodity supply chain performance.</div>
+          <div class="publication-authors">Dokhanian S, <strong>Sodagartojgi A</strong>, Tehranian K, Ahmadirad Z, Khorashadi Moghaddam P, Mohsenibeigzadeh M.</div>
+          <div class="publication-journal"><em>WJARR</em> 22(1) (2024)</div>
+          <div class="publication-links">
+            <a class="publication-link" href="https://doi.org/10.30574/wjarr.2024.22.1.2994" target="_blank" rel="noopener">DOI</a>
+          </div>
         </li>
       </ul>
       <p class="muted">Tip: keep each item to Title · Authors · Venue (Year) · quick links. Bold your name for skimmability.</p>
@@ -161,7 +151,7 @@
     <section id="awards">
       <h2>Honors & Awards</h2>
       <ul>
-        <li>Full 5‑Year PhD Fellowship, Rutgers University (2022–2027)</li>
+        <li>Full 5-Year PhD Fellowship, Rutgers University (2022–2027)</li>
         <li>Best Teaching Assistant Award, Rutgers Statistics (2024)</li>
         <li>Best Qualifying Exam Performance, Rutgers Statistics (2023)</li>
         <li>JSM Travel Grant, American Statistical Association (2024)</li>
@@ -182,8 +172,8 @@
     <section id="cv">
       <h2>Curriculum Vitae</h2>
       <p>
-        <a class="pill" href="/CV_Arash.pdf" target="_blank" rel="noopener">Download my CV (PDF)</a>
-        <span class="muted"> · Last updated: 2025‑09</span>
+        <a class="publication-link" href="/CV_Arash.pdf" target="_blank" rel="noopener">Download my CV (PDF)</a>
+        <span class="muted"> · Last updated: 2025-09</span>
       </p>
       <h3>Education</h3>
       <ul>
@@ -205,8 +195,14 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
-    <p>© <script>document.write(new Date().getFullYear())</script> Abolfazl (Arash) Sodagartojgi. All rights reserved.</p>
+    <div class="container">
+      <p>© <span id="y"></span> Abolfazl (Arash) Sodagartojgi. All rights reserved.</p>
+    </div>
+    <script>
+      document.getElementById('y').textContent = new Date().getFullYear();
+    </script>
   </footer>
 </body>
 </html>
