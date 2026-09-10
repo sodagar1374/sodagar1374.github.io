@@ -18,7 +18,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -45,12 +45,17 @@
 <style>
   :root{
     --accent:#7a0026;
+    --accent-2:#b8863f;
     --accent-soft:#7a002614;
     --text:#1c1b19;
     --muted:#6b6660;
     --bg:#fbfaf7;
     --bg-raised:#f3f1ec;
+    --bg-card:#ffffff;
     --rule:#e5e1d8;
+    --shadow:0 1px 2px rgba(20,15,10,.04), 0 10px 28px -14px rgba(20,15,10,.16);
+    --shadow-hover:0 2px 6px rgba(20,15,10,.06), 0 18px 36px -14px rgba(20,15,10,.22);
+    --sidebar-w:296px;
     --maxw:720px;
     --serif:"Newsreader", Georgia, "Times New Roman", serif;
     --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -59,12 +64,20 @@
   html.dark{color-scheme:dark}
   html.dark{
     --accent:#e8879f;
+    --accent-2:#d8ab6e;
     --accent-soft:#e8879f1f;
     --text:#eeece6;
     --muted:#a39c92;
-    --bg:#171614;
-    --bg-raised:#201f1c;
+    --bg:#141312;
+    --bg-raised:#1c1a17;
+    --bg-card:#1f1d1a;
     --rule:#332f2a;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.5);
+    --shadow-hover:0 2px 6px rgba(0,0,0,.35), 0 18px 36px -14px rgba(0,0,0,.6);
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{animation-duration:.001ms !important;transition-duration:.001ms !important}
   }
   *{box-sizing:border-box}
   body{margin:0;font:16px/1.65 var(--sans);color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;transition:background .25s ease,color .25s ease}
@@ -72,105 +85,140 @@
   a:hover{text-decoration:underline}
   ::selection{background:var(--accent-soft)}
 
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .wrap{max-width:calc(var(--maxw) + var(--sidebar-w) + 64px);margin:0 auto;padding:0 24px}
 
-  /* Slim sticky nav */
-  .site-nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--rule)}
-  .site-nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 24px;max-width:calc(var(--maxw) + 48px)}
-  .brand{font-family:var(--serif);font-weight:600;font-size:1rem;white-space:nowrap;color:var(--text);opacity:0;transform:translateY(-4px);transition:opacity .3s ease, transform .3s ease;pointer-events:none}
-  .brand.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+  /* Slim sticky nav (mobile / compact) */
+  .site-nav{position:sticky;top:0;z-index:30;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--rule);display:none}
+  .site-nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 24px}
+  .brand{font-family:var(--serif);font-weight:600;font-size:1rem;white-space:nowrap;color:var(--text)}
   .brand:hover{text-decoration:none}
-  nav.links{display:flex;align-items:center;gap:2px;flex-wrap:wrap}
-  nav.links a{font-size:.85rem;font-weight:500;color:var(--muted);padding:7px 11px;border-radius:8px;transition:color .15s ease,background .15s ease}
+  nav.links{display:flex;align-items:center;gap:2px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;-ms-overflow-style:none;scrollbar-width:none}
+  nav.links::-webkit-scrollbar{display:none}
+  nav.links a{font-size:.8rem;font-weight:500;color:var(--muted);padding:6px 10px;border-radius:8px;white-space:nowrap;transition:color .15s ease,background .15s ease}
   nav.links a:hover{color:var(--text);background:var(--bg-raised);text-decoration:none}
   nav.links a.active{color:var(--accent);background:var(--accent-soft)}
-  .theme-toggle{border:1px solid var(--rule);background:var(--bg-raised);color:var(--text);width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex:0 0 auto}
+
+  .theme-toggle{border:1px solid var(--rule);background:var(--bg-raised);color:var(--text);width:34px;height:34px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex:0 0 auto}
   .theme-toggle:hover{border-color:var(--accent)}
   .theme-toggle svg{width:16px;height:16px}
   .theme-toggle .sun{display:none}
   html.dark .theme-toggle .moon{display:none}
   html.dark .theme-toggle .sun{display:block}
 
-  /* Hero */
-  .hero{padding:56px 0 40px;display:flex;gap:28px;align-items:flex-start}
-  .hero img{width:220px;height:220px;border-radius:16px;object-fit:cover;border:1px solid var(--rule);flex:0 0 auto}
-  .hero h1{font-family:var(--serif);font-weight:600;font-size:2rem;line-height:1.15;margin:0 0 6px}
-  .hero .tagline{color:var(--muted);font-size:1.05rem;margin:0 0 4px}
-  .hero .affil{color:var(--muted);font-size:.95rem;margin:0 0 16px}
-  .hero .affil strong{color:var(--text);font-weight:600}
-  .iconlinks{display:flex;flex-wrap:wrap;gap:8px}
-  .iconlinks a{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:500;color:var(--text);border:1px solid var(--rule);padding:6px 12px 6px 9px;border-radius:20px;transition:border-color .15s ease,color .15s ease}
-  .iconlinks a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
-  .iconlinks svg{width:14px;height:14px}
+  /* Layout: sticky sidebar + scrolling content */
+  .layout{display:grid;grid-template-columns:var(--sidebar-w) 1fr;gap:64px;align-items:start;padding:64px 0 24px}
 
-  @media (max-width:560px){
-    .hero{padding:36px 0 28px;gap:18px}
-    .hero img{width:130px;height:130px;border-radius:12px}
-    .hero h1{font-size:1.45rem}
+  .sidebar{position:sticky;top:56px;display:flex;flex-direction:column;gap:22px;max-height:calc(100vh - 80px)}
+  .avatar-wrap{position:relative;width:148px;height:148px}
+  .avatar-wrap::before{content:"";position:absolute;inset:-8px;border-radius:22px;background:linear-gradient(135deg, var(--accent), var(--accent-2));opacity:.35;filter:blur(2px)}
+  .avatar-wrap img{position:relative;width:148px;height:148px;border-radius:18px;object-fit:cover;border:3px solid var(--bg);display:block}
+
+  .sidebar h1{font-family:var(--serif);font-weight:700;font-size:1.7rem;line-height:1.12;margin:2px 0 2px;letter-spacing:-.01em}
+  .sidebar .role{color:var(--accent);font-weight:600;font-size:.92rem;margin:0 0 6px}
+  .sidebar .affil{color:var(--muted);font-size:.86rem;margin:0 0 4px;line-height:1.5}
+
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}
+  .chip{font-size:.72rem;font-weight:600;color:var(--accent);background:var(--accent-soft);border:1px solid color-mix(in srgb, var(--accent) 30%, transparent);padding:3px 9px;border-radius:20px}
+
+  nav.side-nav{display:flex;flex-direction:column;gap:1px;margin-top:4px;border-top:1px solid var(--rule);padding-top:14px}
+  nav.side-nav a{position:relative;font-size:.86rem;font-weight:500;color:var(--muted);padding:7px 4px 7px 14px;border-radius:7px;transition:color .15s ease,background .15s ease}
+  nav.side-nav a::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:2px;height:0;background:var(--accent);border-radius:2px;transition:height .18s ease}
+  nav.side-nav a:hover{color:var(--text);background:var(--bg-raised);text-decoration:none}
+  nav.side-nav a.active{color:var(--accent)}
+  nav.side-nav a.active::before{height:16px}
+
+  .social-row{display:flex;gap:8px;margin-top:6px}
+  .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--rule);border-radius:10px;color:var(--muted);transition:border-color .15s ease,color .15s ease,transform .15s ease}
+  .icon-btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;transform:translateY(-1px)}
+  .icon-btn svg{width:16px;height:16px}
+
+  .cv-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:#fff;font-weight:600;font-size:.86rem;padding:11px 14px;border-radius:10px;box-shadow:var(--shadow);transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease}
+  .cv-btn:hover{opacity:.94;transform:translateY(-1px);box-shadow:var(--shadow-hover);text-decoration:none}
+  .cv-btn svg{width:15px;height:15px}
+
+  @media (max-width:960px){
+    .site-nav{display:block}
+    .wrap{max-width:calc(var(--maxw) + 48px)}
+    .layout{grid-template-columns:1fr;gap:0;padding:0}
+    .sidebar{position:static;max-height:none;flex-direction:row;align-items:flex-start;gap:20px;padding:36px 0 28px;border-bottom:1px solid var(--rule)}
+    .avatar-wrap,.avatar-wrap img{width:112px;height:112px}
+    .avatar-wrap::before{border-radius:16px}
+    .avatar-wrap img{border-radius:14px}
+    nav.side-nav{display:none}
+    .sidebar h1{font-size:1.4rem}
+    #themeToggleDesktop{display:none}
+  }
+  @media (max-width:520px){
+    .sidebar{flex-direction:column;align-items:flex-start}
   }
 
-  @media (max-width:640px){
-    .site-nav .wrap{flex-wrap:wrap;padding:10px 16px 8px;gap:8px}
-    .brand{display:none}
-    nav.links{order:3;width:100%;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:2px;-ms-overflow-style:none;scrollbar-width:none}
-    nav.links::-webkit-scrollbar{display:none}
-    nav.links a{padding:6px 10px;font-size:.8rem;white-space:nowrap}
-  }
+  /* Reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
 
   /* Sections */
-  main{padding-bottom:20px}
-  section{padding:36px 0;border-top:1px solid var(--rule)}
-  section:first-of-type{border-top:none}
-  h2{font-family:var(--serif);font-weight:600;font-size:1.15rem;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);margin:0 0 20px}
-  h3{font-family:var(--serif);font-weight:600;font-size:1.15rem;margin:0 0 4px;color:var(--text)}
+  .content{min-width:0}
+  section{padding:40px 0;border-top:1px solid var(--rule)}
+  section:first-of-type{border-top:none;padding-top:4px}
+  h2{font-family:var(--serif);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 22px;display:flex;align-items:center;gap:10px}
+  h2::after{content:"";flex:1;height:1px;background:var(--rule)}
+  h3{font-family:var(--serif);font-weight:600;font-size:1.12rem;margin:0 0 4px;color:var(--text)}
   p{margin:0 0 14px}
-  .lede p{font-size:1.02rem;line-height:1.75}
+  .lede p{font-size:1.06rem;line-height:1.8}
+  .lede p:first-child::first-letter{font-family:var(--serif);font-size:2.6rem;font-weight:600;color:var(--accent);float:left;line-height:.85;padding:4px 6px 0 0}
   .lede p:last-child{margin-bottom:0}
 
-  /* Research list */
-  .research-item{display:flex;gap:16px;padding:18px 0;border-top:1px solid var(--rule)}
-  .research-item:first-child{border-top:none;padding-top:0}
-  .research-item .num{font-family:var(--serif);color:var(--accent);font-weight:500;font-size:1.1rem;flex:0 0 28px}
-  .research-item h3{font-size:1.02rem;margin-bottom:6px}
-  .research-item p{color:var(--muted);font-size:.95rem;margin-bottom:10px}
+  /* Research grid */
+  .research-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:640px){.research-grid{grid-template-columns:1fr}}
+  .research-card{background:var(--bg-card);border:1px solid var(--rule);border-radius:14px;padding:20px;box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+  .research-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:color-mix(in srgb, var(--accent) 25%, var(--rule))}
+  .research-card .num{font-family:var(--serif);color:var(--accent-2);font-weight:600;font-size:.8rem;letter-spacing:.06em}
+  .research-card h3{font-size:1.02rem;margin:8px 0 6px}
+  .research-card p{color:var(--muted);font-size:.92rem;margin-bottom:12px}
   .tags{display:flex;flex-wrap:wrap;gap:6px}
-  .tag{font-size:.75rem;font-weight:500;color:var(--muted);background:var(--bg-raised);border:1px solid var(--rule);padding:3px 9px;border-radius:12px}
+  .tag{font-size:.72rem;font-weight:500;color:var(--muted);background:var(--bg-raised);border:1px solid var(--rule);padding:3px 9px;border-radius:12px}
 
   /* Publications */
-  .pubs{list-style:none;margin:0;padding:0;counter-reset:pub}
-  .pub{counter-increment:pub;position:relative;padding:16px 0 16px 34px;border-top:1px solid var(--rule)}
-  .pub:first-child{border-top:none;padding-top:0}
-  .pub::before{content:counter(pub);position:absolute;left:0;top:16px;font-family:var(--serif);color:var(--muted);font-size:.9rem}
-  .pub:first-child::before{top:0}
-  .pub-title{font-weight:600;font-size:1rem;line-height:1.4;margin-bottom:5px}
+  .pubs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+  .pub{position:relative;background:var(--bg-card);border:1px solid var(--rule);border-left:3px solid var(--accent-2);border-radius:12px;padding:16px 18px 16px 20px;box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease}
+  .pub:hover{transform:translateX(2px);box-shadow:var(--shadow-hover)}
+  .pub-title{font-weight:600;font-size:1rem;line-height:1.4;margin-bottom:6px}
   .pub-authors{color:var(--text);font-size:.92rem}
   .pub-venue{font-style:italic;color:var(--muted)}
-  .pub-links{margin-top:6px}
-  .pub-links a{font-size:.8rem;font-weight:500;border:1px solid var(--rule);padding:3px 10px;border-radius:12px;color:var(--muted)}
+  .pub-links{margin-top:8px}
+  .pub-links a{font-size:.78rem;font-weight:500;border:1px solid var(--rule);padding:3px 10px;border-radius:12px;color:var(--muted)}
   .pub-links a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
   .pub-links a + a{margin-left:6px}
   .note{color:var(--muted);font-size:.9rem;margin-top:18px}
 
-  /* Awards */
-  .awards{list-style:none;margin:0;padding:0}
-  .awards li{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--rule);font-size:.95rem}
-  .awards li:first-child{border-top:none;padding-top:0}
-  .awards .yr{flex:0 0 78px;color:var(--muted);font-variant-numeric:tabular-nums;font-size:.85rem;padding-top:2px}
+  /* Awards timeline */
+  .timeline{list-style:none;margin:0;padding:0;position:relative}
+  .timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--rule)}
+  .timeline li{position:relative;padding:0 0 20px 26px;font-size:.95rem}
+  .timeline li:last-child{padding-bottom:0}
+  .timeline li::before{content:"";position:absolute;left:0;top:5px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--accent-2)}
+  .timeline .yr{display:block;color:var(--muted);font-variant-numeric:tabular-nums;font-size:.78rem;font-weight:600;letter-spacing:.03em;margin-bottom:2px}
+
+  .service-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .service-list li{position:relative;padding:0 0 0 20px;font-size:.94rem;color:var(--text)}
+  .service-list li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent-2)}
 
   /* Simple key/value blocks (CV) */
-  .kv{margin-top:8px}
-  .kv-row{padding:12px 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:150px 1fr;gap:16px}
-  .kv-row:first-child{border-top:none;padding-top:0}
-  .kv-row .k{color:var(--muted);font-size:.85rem}
-  .kv-row .v{font-size:.95rem}
+  .kv{margin-top:8px;background:var(--bg-card);border:1px solid var(--rule);border-radius:14px;padding:6px 18px;box-shadow:var(--shadow)}
+  .kv-row{padding:14px 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:150px 1fr;gap:16px}
+  .kv-row:first-child{border-top:none}
+  .kv-row .k{color:var(--accent-2);font-size:.8rem;font-weight:600}
+  .kv-row .v{font-size:.94rem}
   @media (max-width:560px){.kv-row{grid-template-columns:1fr;gap:2px}}
 
-  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-weight:600;font-size:.9rem;padding:9px 16px;border-radius:9px}
-  .btn:hover{opacity:.9;text-decoration:none}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-weight:600;font-size:.9rem;padding:10px 18px;border-radius:10px;box-shadow:var(--shadow);transition:transform .15s ease,box-shadow .15s ease}
+  .btn:hover{opacity:.94;transform:translateY(-1px);box-shadow:var(--shadow-hover);text-decoration:none}
   .btn svg{width:14px;height:14px}
 
-  footer{border-top:1px solid var(--rule);padding:32px 0 48px;text-align:center}
-  footer .iconlinks{justify-content:center;margin-bottom:14px}
+  footer{border-top:1px solid var(--rule);padding:36px 0 48px;text-align:center}
+  footer .social-row{justify-content:center;margin-bottom:14px}
+  footer .wrap{display:flex;flex-direction:column;align-items:center}
   footer p{color:var(--muted);font-size:.82rem;margin:0}
 
   .skip-link{position:absolute;left:-9999px;top:0;background:var(--accent);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;z-index:100}
@@ -178,7 +226,8 @@
   a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
   @media print{
-    .site-nav,.theme-toggle,.iconlinks{display:none}
+    .site-nav,.theme-toggle,.social-row,.cv-btn,nav.side-nav{display:none}
+    .layout{display:block}
     body{background:#fff;color:#000}
   }
 </style>
@@ -189,7 +238,7 @@
 
 <header class="site-nav">
   <div class="wrap">
-    <a href="#top" class="brand" id="brand">Sodagartojgi</a>
+    <a href="#top" class="brand">Sodagartojgi</a>
     <nav class="links" aria-label="Primary">
       <a href="#about">About</a>
       <a href="#research">Research</a>
@@ -199,7 +248,7 @@
       <a href="#cv">CV</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle dark mode" type="button">
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
     </button>
@@ -208,222 +257,239 @@
 
 <div id="top"></div>
 
-<main id="main" class="wrap">
+<div class="wrap">
+  <div class="layout">
 
-  <section class="hero" id="heroSection">
-    <img src="images/profile-web.jpg" alt="Portrait of Abolfazl (Arash) Sodagartojgi" width="132" height="132" />
-    <div>
-      <h1>Abolfazl (Arash) Sodagartojgi</h1>
-      <p class="tagline">PhD Candidate in Statistics</p>
-      <p class="affil"><strong>Rutgers University</strong> · Highland Park, NJ</p>
-      <div class="iconlinks">
-        <a href="mailto:sodagaax@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Email
-        </a>
-        <a href="https://scholar.google.com/citations?user=l0vfBEwAAAAJ&hl=en" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3z"/><path d="M5 13.2V17l7 4 7-4v-3.8"/></svg>
-          Google Scholar
-        </a>
-        <a href="https://github.com/sodagar1374" target="_blank" rel="noopener">
-          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/abolfazl-arash-sodagartojgi-728050156/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-          LinkedIn
-        </a>
-        <a href="CV_Arash.pdf" target="_blank" rel="noopener">
+    <aside class="sidebar" id="sidebar">
+      <button class="theme-toggle" id="themeToggleDesktop" aria-label="Toggle dark mode" type="button" style="align-self:flex-end">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+
+      <div class="avatar-wrap">
+        <img src="images/profile-web.jpg" alt="Portrait of Abolfazl (Arash) Sodagartojgi" width="148" height="148" />
+      </div>
+
+      <div>
+        <h1>Abolfazl (Arash)<br>Sodagartojgi</h1>
+        <p class="role">PhD Candidate in Statistics</p>
+        <p class="affil">Rutgers University<br>Highland Park, NJ</p>
+        <div class="chips">
+          <span class="chip">PhD Candidate</span>
+          <span class="chip">Statistical Consultant</span>
+        </div>
+      </div>
+
+      <nav class="side-nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#pubs">Publications</a>
+        <a href="#awards">Awards</a>
+        <a href="#teaching">Teaching &amp; Service</a>
+        <a href="#cv">CV</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div>
+        <div class="social-row">
+          <a class="icon-btn" href="mailto:sodagaax@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+          <a class="icon-btn" href="https://scholar.google.com/citations?user=l0vfBEwAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3z"/><path d="M5 13.2V17l7 4 7-4v-3.8"/></svg>
+          </a>
+          <a class="icon-btn" href="https://github.com/sodagar1374" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          </a>
+          <a class="icon-btn" href="https://www.linkedin.com/in/abolfazl-arash-sodagartojgi-728050156/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          </a>
+        </div>
+        <a class="cv-btn" href="CV_Arash.pdf" target="_blank" rel="noopener" style="margin-top:10px;width:100%">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          CV (PDF)
+          Download CV
         </a>
       </div>
-    </div>
-  </section>
+    </aside>
 
-  <section id="about">
-    <h2>About</h2>
-    <div class="lede">
-      <p>I am a PhD Candidate in Statistics at Rutgers University, developing interpretable statistical methods for high-dimensional time-series data. My research centers on identifiable dynamic factor models, sparse factor transitions, Bayesian inference, and state-space estimation, with applications to environmental and economic forecasting. I have advanced to doctoral candidacy, with my dissertation proposal approved by committee. I have three-plus years of prior quantitative finance experience at Rabobank (New York), building forecasting and risk-management tools for derivatives portfolios.</p>
-      <p>Alongside my dissertation research, I serve as a Statistical Consultant at Rutgers' Office of Statistical Consulting, advising faculty, researchers, and graduate students on study design, power analysis, and data analysis across disciplines.</p>
-      <p>My current interests include dynamic factor models and sparse state-space inference; VAEs, flows, and diffusion models; causal inference in finance and healthcare; and machine-learning-based stochastic weather generators for renewable energy.</p>
-    </div>
-  </section>
+    <main id="main" class="content">
 
-  <section id="research">
-    <h2>Research</h2>
-
-    <div class="research-item">
-      <div class="num">01</div>
-      <div>
-        <h3>Dynamic Factor Models</h3>
-        <p>Identifiable DFMs with episodic factor activation and efficient MAP-EM / Kalman filtering.</p>
-        <div class="tags"><span class="tag">Time Series</span><span class="tag">Kalman Filtering</span><span class="tag">Spike-and-Slab</span></div>
-      </div>
-    </div>
-
-    <div class="research-item">
-      <div class="num">02</div>
-      <div>
-        <h3>Deep Generative Models</h3>
-        <p>VAEs, normalizing flows, and diffusion models for complex temporal structure and stochastic volatility.</p>
-        <div class="tags"><span class="tag">VAE</span><span class="tag">Diffusion Models</span></div>
-      </div>
-    </div>
-
-    <div class="research-item">
-      <div class="num">03</div>
-      <div>
-        <h3>Causal Machine Learning</h3>
-        <p>Combining causal inference with deep learning for order-book dynamics and clinical EEG.</p>
-        <div class="tags"><span class="tag">Causal Inference</span><span class="tag">Finance</span></div>
-      </div>
-    </div>
-
-    <div class="research-item">
-      <div class="num">04</div>
-      <div>
-        <h3>Stochastic Weather Generators</h3>
-        <p>Minute-level wind-vector generation trained on multi-decade atmospheric datasets.</p>
-        <div class="tags"><span class="tag">Renewables</span><span class="tag">Wind</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="pubs">
-    <h2>Publications</h2>
-    <ul class="pubs">
-
-      <li class="pub">
-        <div class="pub-title">
-          <a href="https://arxiv.org/abs/2606.09941" target="_blank" rel="noopener">Stochastic weather generators for high-frequency wind vector time series</a>
+      <section id="about" class="reveal">
+        <h2>About</h2>
+        <div class="lede">
+          <p>I am a PhD Candidate in Statistics at Rutgers University, developing interpretable statistical methods for high-dimensional time-series data. My research centers on identifiable dynamic factor models, sparse factor transitions, Bayesian inference, and state-space estimation, with applications to environmental and economic forecasting. I have advanced to doctoral candidacy, with my dissertation proposal approved by committee. I have three-plus years of prior quantitative finance experience at Rabobank (New York), building forecasting and risk-management tools for derivatives portfolios.</p>
+          <p>Alongside my dissertation research, I serve as a Statistical Consultant at Rutgers' Office of Statistical Consulting, advising faculty, researchers, and graduate students on study design, power analysis, and data analysis across disciplines.</p>
+          <p>My current interests include dynamic factor models and sparse state-space inference; VAEs, flows, and diffusion models; causal inference in finance and healthcare; and machine-learning-based stochastic weather generators for renewable energy.</p>
         </div>
-        <div class="pub-authors">Cui M, Eng K, Greene JT, Ke Z, <strong>Sodagartojgi A</strong>, Xia Z, Moran GE, Stein ML. <span class="pub-venue">arXiv preprint arXiv:2606.09941</span> (2026) &middot; Under review at <em>Advances in Statistical Climatology, Meteorology and Oceanography</em> (ASCMO)</div>
-        <div class="pub-links"><a href="https://arxiv.org/abs/2606.09941" target="_blank" rel="noopener">arXiv</a></div>
-      </li>
+      </section>
 
-      <li class="pub">
-        <div class="pub-title">
-          <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=l0vfBEwAAAAJ&sortby=pubdate&citation_for_view=l0vfBEwAAAAJ:WF5omc3nYNoC" target="_blank" rel="noopener">Modeling the relationship between artificial intelligence, service innovation, and financial performance: A dual SEM&ndash;ANN perspective</a>
+      <section id="research" class="reveal">
+        <h2>Research</h2>
+        <div class="research-grid">
+
+          <div class="research-card">
+            <div class="num">01</div>
+            <h3>Dynamic Factor Models</h3>
+            <p>Identifiable DFMs with episodic factor activation and efficient MAP-EM / Kalman filtering.</p>
+            <div class="tags"><span class="tag">Time Series</span><span class="tag">Kalman Filtering</span><span class="tag">Spike-and-Slab</span></div>
+          </div>
+
+          <div class="research-card">
+            <div class="num">02</div>
+            <h3>Deep Generative Models</h3>
+            <p>VAEs, normalizing flows, and diffusion models for complex temporal structure and stochastic volatility.</p>
+            <div class="tags"><span class="tag">VAE</span><span class="tag">Diffusion Models</span></div>
+          </div>
+
+          <div class="research-card">
+            <div class="num">03</div>
+            <h3>Causal Machine Learning</h3>
+            <p>Combining causal inference with deep learning for order-book dynamics and clinical EEG.</p>
+            <div class="tags"><span class="tag">Causal Inference</span><span class="tag">Finance</span></div>
+          </div>
+
+          <div class="research-card">
+            <div class="num">04</div>
+            <h3>Stochastic Weather Generators</h3>
+            <p>Minute-level wind-vector generation trained on multi-decade atmospheric datasets.</p>
+            <div class="tags"><span class="tag">Renewables</span><span class="tag">Wind</span></div>
+          </div>
+
         </div>
-        <div class="pub-authors">Heidari S, Shafiesabet A, Darvishan S, Karimi R, <strong>Sodagartojgi A</strong>. <span class="pub-venue">International Journal of Research in Industrial Engineering</span> (2026) &middot; Articles in Press</div>
-        <div class="pub-links"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=l0vfBEwAAAAJ&sortby=pubdate&citation_for_view=l0vfBEwAAAAJ:WF5omc3nYNoC" target="_blank" rel="noopener">View</a></div>
-      </li>
+      </section>
 
-      <li class="pub">
-        <div class="pub-title">
-          <a href="https://doi.org/10.1038/s41598-025-01129-5" target="_blank" rel="noopener">Enhanced classification of tinnitus patients using EEG microstates and deep learning techniques</a>
+      <section id="pubs" class="reveal">
+        <h2>Publications</h2>
+        <ul class="pubs">
+
+          <li class="pub">
+            <div class="pub-title">
+              <a href="https://arxiv.org/abs/2606.09941" target="_blank" rel="noopener">Stochastic weather generators for high-frequency wind vector time series</a>
+            </div>
+            <div class="pub-authors">Cui M, Eng K, Greene JT, Ke Z, <strong>Sodagartojgi A</strong>, Xia Z, Moran GE, Stein ML. <span class="pub-venue">arXiv preprint arXiv:2606.09941</span> (2026) &middot; Under review at <em>Advances in Statistical Climatology, Meteorology and Oceanography</em> (ASCMO)</div>
+            <div class="pub-links"><a href="https://arxiv.org/abs/2606.09941" target="_blank" rel="noopener">arXiv</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="pub-title">
+              <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=l0vfBEwAAAAJ&sortby=pubdate&citation_for_view=l0vfBEwAAAAJ:WF5omc3nYNoC" target="_blank" rel="noopener">Modeling the relationship between artificial intelligence, service innovation, and financial performance: A dual SEM&ndash;ANN perspective</a>
+            </div>
+            <div class="pub-authors">Heidari S, Shafiesabet A, Darvishan S, Karimi R, <strong>Sodagartojgi A</strong>. <span class="pub-venue">International Journal of Research in Industrial Engineering</span> (2026) &middot; Articles in Press</div>
+            <div class="pub-links"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=l0vfBEwAAAAJ&sortby=pubdate&citation_for_view=l0vfBEwAAAAJ:WF5omc3nYNoC" target="_blank" rel="noopener">View</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="pub-title">
+              <a href="https://doi.org/10.1038/s41598-025-01129-5" target="_blank" rel="noopener">Enhanced classification of tinnitus patients using EEG microstates and deep learning techniques</a>
+            </div>
+            <div class="pub-authors">Raeisi Z, <strong>Sodagartojgi A</strong>, Sharafkhani F, Roshanzamir A, Najafzadeh H, Bashiri O, Golkarieh A. <span class="pub-venue">Scientific Reports</span> (2025)</div>
+            <div class="pub-links"><a href="https://doi.org/10.1038/s41598-025-01129-5" target="_blank" rel="noopener">DOI</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="pub-title">
+              <a href="https://doi.org/10.1007/s13760-025-02812-0" target="_blank" rel="noopener">EEG microstate analysis in trigeminal neuralgia: identifying potential biomarkers for enhanced diagnostic accuracy</a>
+            </div>
+            <div class="pub-authors">Lashaki RA, Raeisi Z, <strong>Sodagartojgi A</strong>, Abedi Lomer F, Aghdaei E, Najafzadeh H. <span class="pub-venue">Acta Neurologica Belgica</span> (2025)</div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/s13760-025-02812-0" target="_blank" rel="noopener">DOI</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="pub-title">
+              <a href="https://doi.org/10.30574/wjarr.2024.23.1.2156" target="_blank" rel="noopener">Enhancing stock market prediction accuracy with recurrent deep learning models: A case study on the CAC40 index</a>
+            </div>
+            <div class="pub-authors">Tashakkori A, Erfanibehrouz N, Mirshekari S, <strong>Sodagartojgi A</strong>, Gupta V. <span class="pub-venue">World Journal of Advanced Research and Reviews</span> 23(1) (2024)</div>
+            <div class="pub-links"><a href="https://doi.org/10.30574/wjarr.2024.23.1.2156" target="_blank" rel="noopener">DOI</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="pub-title">Deep learning-based retinal abnormality detection from OCT images with limited data</div>
+            <div class="pub-authors">Talebzadeh M, <strong>Sodagartojgi A</strong>, Moslemi Z, Sedighi S, Kazemi B, Akbari F. <span class="pub-venue">World Journal of Advanced Research and Reviews</span> 21(3) (2024)</div>
+            <div class="pub-links"><a href="https://doi.org/10.30574/wjarr.2024.21.3.0716" target="_blank" rel="noopener">DOI</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="pub-title">
+              <a href="https://doi.org/10.1016/j.wri.2023.100238" target="_blank" rel="noopener">Modeling and optimization of efficient removal of diclofenac and naproxen based on chemometric approaches</a>
+            </div>
+            <div class="pub-authors">Abdollahi SA, Pourabadeh A, Alishiri M, <strong>Sodagartojgi A</strong>, Ranjbar SF, Ehghaghi MB, Talati F. <span class="pub-venue">Water Resources and Industry</span> 31 (2024): 100238</div>
+            <div class="pub-links"><a href="https://doi.org/10.1016/j.wri.2023.100238" target="_blank" rel="noopener">DOI</a><a href="https://www.sciencedirect.com/science/article/pii/S2212371723000380" target="_blank" rel="noopener">Journal page</a></div>
+          </li>
+
+          <li class="pub">
+            <div class="pub-title">
+              <a href="https://doi.org/10.30574/wjarr.2024.22.1.1119" target="_blank" rel="noopener">Exploring the impact of supply chain integration and agility on commodity supply chain performance</a>
+            </div>
+            <div class="pub-authors">Dokhanian S, <strong>Sodagartojgi A</strong>, Tehranian K, Ahmadirad Z, Khorashadi Moghaddam P, Mohsenibeigzadeh M. <span class="pub-venue">World Journal of Advanced Research and Reviews</span> 22(1) (2024)</div>
+            <div class="pub-links"><a href="https://doi.org/10.30574/wjarr.2024.22.1.1119" target="_blank" rel="noopener">DOI</a></div>
+          </li>
+
+        </ul>
+        <p class="note">For a complete and up-to-date list, see my <a href="https://scholar.google.com/citations?user=l0vfBEwAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar profile</a>.</p>
+      </section>
+
+      <section id="awards" class="reveal">
+        <h2>Honors &amp; Awards</h2>
+        <ul class="timeline">
+          <li><span class="yr">2022–2027</span>Full 5-Year PhD Scholarship, Rutgers University</li>
+          <li><span class="yr">2024</span>Best Teaching Assistant Award, Rutgers Statistics</li>
+          <li><span class="yr">2024</span>Graduate Student Research Award, Rutgers Statistics</li>
+          <li><span class="yr">2025</span>JSM Travel Grant, American Statistical Association</li>
+          <li><span class="yr">2025</span>NBER–NSF Time Series Conference Travel Award</li>
+          <li><span class="yr">2023</span>Best Qualifying Exam Performance, Rutgers Statistics</li>
+          <li><span class="yr">2019</span>College of Business Valedictorian, JMU — Summa Cum Laude, Phi Beta Kappa</li>
+        </ul>
+      </section>
+
+      <section id="teaching" class="reveal">
+        <h2>Teaching &amp; Service</h2>
+        <h3>Teaching Assistant, Rutgers University (2022–Present)</h3>
+        <p>Statistical Inference · Linear Regression · Time Series Analysis · Machine Learning. Recipient of the Best Teaching Assistant Award (2024).</p>
+
+        <h3 style="margin-top:22px">Statistical Consultant, Office of Statistical Consulting (2023–Present)</h3>
+        <p>Department of Statistics, Rutgers University. Provide statistical consulting to Rutgers faculty, researchers, and graduate students under faculty supervision — study design, power analysis, data analysis, and interpretation of results — and advise on statistical methodology for grant proposals and manuscripts across disciplines.</p>
+
+        <h3 style="margin-top:22px">Presentations &amp; Professional Service</h3>
+        <ul class="service-list">
+          <li>Poster presentation, &ldquo;Dynamic Factor Model with Sparse Factor Transitions,&rdquo; 2025 NBER&ndash;NSF Time Series Conference, Rutgers University, New Brunswick, NJ (Sep 19&ndash;20, 2025)</li>
+          <li>Peer reviewer, <em>Computer Methods in Biomechanics and Biomedical Engineering</em> (Taylor &amp; Francis), 2026</li>
+          <li>Conference organization: assisted with organizing The Design and Analysis of Experiments (DAE) Conference 2026, Rutgers University, Piscataway, NJ (May 19&ndash;21, 2026)</li>
+        </ul>
+      </section>
+
+      <section id="cv" class="reveal">
+        <h2>Curriculum Vitae</h2>
+        <p><a class="btn" href="CV_Arash.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download full CV (PDF)
+        </a> <span class="note" style="display:inline;margin:0 0 0 8px">Last updated September 2026</span></p>
+
+        <div class="kv">
+          <div class="kv-row"><div class="k">PhD, Statistics</div><div class="v">Rutgers University, 2022–Present — GPA 3.84/4.0 · Advisors: Prof. Gemma Moran &amp; Prof. Han Xiao · Advanced to doctoral candidacy (Nov 2025)</div></div>
+          <div class="kv-row"><div class="k">MS, Statistics</div><div class="v">Rutgers University, 2022–2024</div></div>
+          <div class="kv-row"><div class="k">BS, Math &amp; Economics</div><div class="v">James Madison University, 2016–2019 — Valedictorian, GPA 3.95/4.0</div></div>
+          <div class="kv-row"><div class="k">Experience</div><div class="v">Commodity Derivatives Trading Analyst, Rabobank NY (Oct 2020–Jul 2022)<br>Corporate Derivatives Sales Analyst, Rabobank NY (Aug 2019–Mar 2021)<br>Statistical Consultant, Rutgers Office of Statistical Consulting (Sep 2023–Present)</div></div>
         </div>
-        <div class="pub-authors">Raeisi Z, <strong>Sodagartojgi A</strong>, Sharafkhani F, Roshanzamir A, Najafzadeh H, Bashiri O, Golkarieh A. <span class="pub-venue">Scientific Reports</span> (2025)</div>
-        <div class="pub-links"><a href="https://doi.org/10.1038/s41598-025-01129-5" target="_blank" rel="noopener">DOI</a></div>
-      </li>
+      </section>
 
-      <li class="pub">
-        <div class="pub-title">
-          <a href="https://doi.org/10.1007/s13760-025-02812-0" target="_blank" rel="noopener">EEG microstate analysis in trigeminal neuralgia: identifying potential biomarkers for enhanced diagnostic accuracy</a>
-        </div>
-        <div class="pub-authors">Lashaki RA, Raeisi Z, <strong>Sodagartojgi A</strong>, Abedi Lomer F, Aghdaei E, Najafzadeh H. <span class="pub-venue">Acta Neurologica Belgica</span> (2025)</div>
-        <div class="pub-links"><a href="https://doi.org/10.1007/s13760-025-02812-0" target="_blank" rel="noopener">DOI</a></div>
-      </li>
-
-      <li class="pub">
-        <div class="pub-title">
-          <a href="https://doi.org/10.30574/wjarr.2024.23.1.2156" target="_blank" rel="noopener">Enhancing stock market prediction accuracy with recurrent deep learning models: A case study on the CAC40 index</a>
-        </div>
-        <div class="pub-authors">Tashakkori A, Erfanibehrouz N, Mirshekari S, <strong>Sodagartojgi A</strong>, Gupta V. <span class="pub-venue">World Journal of Advanced Research and Reviews</span> 23(1) (2024)</div>
-        <div class="pub-links"><a href="https://doi.org/10.30574/wjarr.2024.23.1.2156" target="_blank" rel="noopener">DOI</a></div>
-      </li>
-
-      <li class="pub">
-        <div class="pub-title">Deep learning-based retinal abnormality detection from OCT images with limited data</div>
-        <div class="pub-authors">Talebzadeh M, <strong>Sodagartojgi A</strong>, Moslemi Z, Sedighi S, Kazemi B, Akbari F. <span class="pub-venue">World Journal of Advanced Research and Reviews</span> 21(3) (2024)</div>
-        <div class="pub-links"><a href="https://doi.org/10.30574/wjarr.2024.21.3.0716" target="_blank" rel="noopener">DOI</a></div>
-      </li>
-
-      <li class="pub">
-        <div class="pub-title">
-          <a href="https://doi.org/10.1016/j.wri.2023.100238" target="_blank" rel="noopener">Modeling and optimization of efficient removal of diclofenac and naproxen based on chemometric approaches</a>
-        </div>
-        <div class="pub-authors">Abdollahi SA, Pourabadeh A, Alishiri M, <strong>Sodagartojgi A</strong>, Ranjbar SF, Ehghaghi MB, Talati F. <span class="pub-venue">Water Resources and Industry</span> 31 (2024): 100238</div>
-        <div class="pub-links"><a href="https://doi.org/10.1016/j.wri.2023.100238" target="_blank" rel="noopener">DOI</a><a href="https://www.sciencedirect.com/science/article/pii/S2212371723000380" target="_blank" rel="noopener">Journal page</a></div>
-      </li>
-
-      <li class="pub">
-        <div class="pub-title">
-          <a href="https://doi.org/10.30574/wjarr.2024.22.1.1119" target="_blank" rel="noopener">Exploring the impact of supply chain integration and agility on commodity supply chain performance</a>
-        </div>
-        <div class="pub-authors">Dokhanian S, <strong>Sodagartojgi A</strong>, Tehranian K, Ahmadirad Z, Khorashadi Moghaddam P, Mohsenibeigzadeh M. <span class="pub-venue">World Journal of Advanced Research and Reviews</span> 22(1) (2024)</div>
-        <div class="pub-links"><a href="https://doi.org/10.30574/wjarr.2024.22.1.1119" target="_blank" rel="noopener">DOI</a></div>
-      </li>
-
-    </ul>
-    <p class="note">For a complete and up-to-date list, see my <a href="https://scholar.google.com/citations?user=l0vfBEwAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar profile</a>.</p>
-  </section>
-
-  <section id="awards">
-    <h2>Honors &amp; Awards</h2>
-    <ul class="awards">
-      <li><span class="yr">2022–2027</span><span>Full 5-Year PhD Scholarship, Rutgers University</span></li>
-      <li><span class="yr">2024</span><span>Best Teaching Assistant Award, Rutgers Statistics</span></li>
-      <li><span class="yr">2024</span><span>Graduate Student Research Award, Rutgers Statistics</span></li>
-      <li><span class="yr">2025</span><span>JSM Travel Grant, American Statistical Association</span></li>
-      <li><span class="yr">2025</span><span>NBER–NSF Time Series Conference Travel Award</span></li>
-      <li><span class="yr">2023</span><span>Best Qualifying Exam Performance, Rutgers Statistics</span></li>
-      <li><span class="yr">2019</span><span>College of Business Valedictorian, JMU — Summa Cum Laude, Phi Beta Kappa</span></li>
-    </ul>
-  </section>
-
-  <section id="teaching">
-    <h2>Teaching &amp; Service</h2>
-    <h3>Teaching Assistant, Rutgers University (2022–Present)</h3>
-    <p>Statistical Inference · Linear Regression · Time Series Analysis · Machine Learning. Recipient of the Best Teaching Assistant Award (2024).</p>
-
-    <h3>Statistical Consultant, Office of Statistical Consulting (2023–Present)</h3>
-    <p>Department of Statistics, Rutgers University. Provide statistical consulting to Rutgers faculty, researchers, and graduate students under faculty supervision — study design, power analysis, data analysis, and interpretation of results — and advise on statistical methodology for grant proposals and manuscripts across disciplines.</p>
-
-    <h3>Presentations &amp; Professional Service</h3>
-    <ul class="awards">
-      <li><span>Poster presentation, &ldquo;Dynamic Factor Model with Sparse Factor Transitions,&rdquo; 2025 NBER&ndash;NSF Time Series Conference, Rutgers University, New Brunswick, NJ (Sep 19&ndash;20, 2025)</span></li>
-      <li><span>Peer reviewer, <em>Computer Methods in Biomechanics and Biomedical Engineering</em> (Taylor &amp; Francis), 2026</span></li>
-      <li><span>Conference organization: assisted with organizing The Design and Analysis of Experiments (DAE) Conference 2026, Rutgers University, Piscataway, NJ (May 19&ndash;21, 2026)</span></li>
-    </ul>
-  </section>
-
-  <section id="cv">
-    <h2>Curriculum Vitae</h2>
-    <p><a class="btn" href="CV_Arash.pdf" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Download full CV (PDF)
-    </a> <span class="note" style="display:inline;margin:0 0 0 8px">Last updated September 2026</span></p>
-
-    <div class="kv">
-      <div class="kv-row"><div class="k">PhD, Statistics</div><div class="v">Rutgers University, 2022–Present — GPA 3.84/4.0 · Advisors: Prof. Gemma Moran &amp; Prof. Han Xiao · Advanced to doctoral candidacy (Nov 2025)</div></div>
-      <div class="kv-row"><div class="k">MS, Statistics</div><div class="v">Rutgers University, 2022–2024</div></div>
-      <div class="kv-row"><div class="k">BS, Math &amp; Economics</div><div class="v">James Madison University, 2016–2019 — Valedictorian, GPA 3.95/4.0</div></div>
-      <div class="kv-row"><div class="k">Experience</div><div class="v">Commodity Derivatives Trading Analyst, Rabobank NY (Oct 2020–Jul 2022)<br>Corporate Derivatives Sales Analyst, Rabobank NY (Aug 2019–Mar 2021)<br>Statistical Consultant, Rutgers Office of Statistical Consulting (Sep 2023–Present)</div></div>
-    </div>
-  </section>
-
-</main>
+    </main>
+  </div>
+</div>
 
 <footer id="contact">
   <div class="wrap">
-    <div class="iconlinks">
-      <a href="mailto:sodagaax@gmail.com">
+    <div class="social-row">
+      <a class="icon-btn" href="mailto:sodagaax@gmail.com" aria-label="Email">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        sodagaax@gmail.com
       </a>
-      <a href="https://github.com/sodagar1374" target="_blank" rel="noopener">
+      <a class="icon-btn" href="https://github.com/sodagar1374" target="_blank" rel="noopener" aria-label="GitHub">
         <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        GitHub
       </a>
-      <a href="https://scholar.google.com/citations?user=l0vfBEwAAAAJ&hl=en" target="_blank" rel="noopener">
+      <a class="icon-btn" href="https://scholar.google.com/citations?user=l0vfBEwAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3z"/><path d="M5 13.2V17l7 4 7-4v-3.8"/></svg>
-        Google Scholar
       </a>
-      <a href="https://www.linkedin.com/in/abolfazl-arash-sodagartojgi-728050156/" target="_blank" rel="noopener">
+      <a class="icon-btn" href="https://www.linkedin.com/in/abolfazl-arash-sodagartojgi-728050156/" target="_blank" rel="noopener" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-        LinkedIn
       </a>
     </div>
     <p>Highland Park, NJ · © <span id="y"></span> Abolfazl (Arash) Sodagartojgi</p>
@@ -439,38 +505,51 @@
   if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     root.classList.add('dark');
   }
-  document.getElementById('themeToggle').addEventListener('click', function () {
+  function toggleTheme(){
     root.classList.toggle('dark');
     localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
-  });
+  }
+  var tD = document.getElementById('themeToggleDesktop');
+  var tM = document.getElementById('themeToggleMobile');
+  if (tD) tD.addEventListener('click', toggleTheme);
+  if (tM) tM.addEventListener('click', toggleTheme);
 
-  // Scrollspy for nav links
-  var navLinks = document.querySelectorAll('nav.links a');
+  // Scrollspy for nav links (both the sidebar nav and the mobile top nav)
+  var navLinks = document.querySelectorAll('nav.links a, nav.side-nav a');
   var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
   var byId = {};
-  navLinks.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+  navLinks.forEach(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    (byId[id] = byId[id] || []).push(a);
+  });
 
-  var observer = new IntersectionObserver(function (entries) {
+  var spy = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
-      var link = byId[entry.target.id];
-      if (!link) return;
+      var links = byId[entry.target.id];
+      if (!links) return;
       if (entry.isIntersecting) {
         navLinks.forEach(function (a) { a.classList.remove('active'); });
-        link.classList.add('active');
+        links.forEach(function (a) { a.classList.add('active'); });
       }
     });
   }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-  sections.forEach(function (s) { observer.observe(s); });
+  sections.forEach(function (s) { spy.observe(s); });
 
-  // Show compact brand name in sticky nav once hero has scrolled past
-  var brand = document.getElementById('brand');
-  var hero = document.getElementById('heroSection');
-  var heroObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      brand.classList.toggle('visible', !entry.isIntersecting);
-    });
-  }, { rootMargin: '-72px 0px 0px 0px', threshold: 0 });
-  heroObserver.observe(hero);
+  // Reveal-on-scroll for sections
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if ('IntersectionObserver' in window) {
+    var reveal = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          reveal.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    revealEls.forEach(function (el) { reveal.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('visible'); });
+  }
 </script>
 </body>
 </html>
